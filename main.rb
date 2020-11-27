@@ -15,9 +15,7 @@ def get_top_fruits
 end
 
 get '/' do
-    puts '1111122222'
-    puts request.query_string
-    Mysqlclient.query(request.query_string,:as => :hash).to_a
+    Mysqlclient.server_info
 end
 
 get '/ready' do
@@ -30,7 +28,7 @@ get '/hello/:name' do
   "Hello #{params['name']}!"
   begin
   puts params['name']
-  Mysqlclient.query(params['name'],:as => :hash).to_a
+  Mysqlclient.server_info
   puts 'norm'
   rescue
   puts 'rescue'
