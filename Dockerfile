@@ -5,7 +5,7 @@ RUN bundle config --global frozen 1
 
 WORKDIR /usr/src/app
 
-COPY Gemfile Gemfile.lock main.rb entrypoint.sh ./
+COPY Gemfile Gemfile.lock main.rb  ./
 RUN bundle install
 
 COPY . .
