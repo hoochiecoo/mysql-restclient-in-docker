@@ -1,3 +1,5 @@
+[![Hits-of-Code](https://hitsofcode.com/github/hoochiecoo/mysql-restclient-in-docker?branch=master)](https://hitsofcode.com/github/hoochiecoo/mysql-restclient-in-docker?branch=master/view?branch=master)
+
 # ruby-in-docker
 
 # run mys
