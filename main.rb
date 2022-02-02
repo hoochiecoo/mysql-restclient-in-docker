@@ -26,7 +26,8 @@ get '/sql-json/:query' do |query|
   Mysqlclient.query(decoded, :as => :hash).to_a.to_json
 end
 
-get '/sql-csv/:query' do |query|
+get '/sql-csv' do 
+  query = params['query']
   content_type 'text/csv'
   decoded = URI.decode_www_form_component(query)
   puts decoded
