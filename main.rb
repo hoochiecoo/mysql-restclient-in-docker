@@ -2,8 +2,6 @@ require 'mysql2'
 require 'sinatra'
 require 'json'
 require 'uri'
-require "active_support/core_ext"
-
 
 set :bind, '0.0.0.0'
 
@@ -27,9 +25,16 @@ get '/sql-json/:query' do |query|
   Mysqlclient.query(decoded, :as => :hash).to_a.to_json
 end
 
-get '/sql-xml/:query' do |query|
-  content_type 'text/xml'
+get '/sql-csv/:query' do |query|
+  content_type 'text/csv'
   decoded = URI.decode_www_form_component(query)
   puts decoded
-  Mysqlclient.query(decoded, :as => :hash).to_xml
+  result = Mysqlclient.query(decoded, :as => :hash).to_a.to_json
+    
+  csv_string = CSV.generate do |csv|
+  JSON.parse(result).each do |hash|
+    csv << hash.values
+  end
+  csv_string
+end
 end
