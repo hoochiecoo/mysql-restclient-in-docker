@@ -19,9 +19,16 @@ post '/payload' do
   Mysqlclient.query(push, :as => :hash).to_a.to_json
 end
 
-get '/sql/:query' do |query|
+get '/sql-json/:query' do |query|
   content_type 'application/json'
   decoded = URI.decode_www_form_component(query)
   puts decoded
   Mysqlclient.query(decoded, :as => :hash).to_a.to_json
+end
+
+get '/sql-xml/:query' do |query|
+  content_type 'text/xml'
+  decoded = URI.decode_www_form_component(query)
+  puts decoded
+  Mysqlclient.query(decoded, :as => :hash).to_a.to_xml
 end
