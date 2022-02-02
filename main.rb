@@ -16,3 +16,9 @@ post '/payload' do
   puts push
   Mysqlclient.query(push, :as => :hash).to_a.to_json
 end
+
+get '/sql/:query' do |query|
+  content_type 'application/json'
+  puts query
+  Mysqlclient.query(query, :as => :hash).to_a.to_json
+end
