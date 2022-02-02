@@ -1,6 +1,8 @@
 require 'mysql2'
 require 'sinatra'
 require 'json'
+require 'uri'
+
 
 set :bind, '0.0.0.0'
 
@@ -19,6 +21,7 @@ end
 
 get '/sql/:query' do |query|
   content_type 'application/json'
-  puts query
-  Mysqlclient.query(query, :as => :hash).to_a.to_json
+  decoded = URI.decode_www_form_component(query)
+  puts decoded
+  Mysqlclient.query(decoded, :as => :hash).to_a.to_json
 end
