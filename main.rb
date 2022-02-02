@@ -2,6 +2,7 @@ require 'mysql2'
 require 'sinatra'
 require 'json'
 require 'uri'
+require 'csv'
 
 set :bind, '0.0.0.0'
 
